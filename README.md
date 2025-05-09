@@ -1,4 +1,4 @@
-# 🎉 Etkinlik Takip Uygulaması
+# Harita Tabanlı Etkinlik Uygulaması
 
 Web tabanlı bu uygulama ile kullanıcılar etkinlik oluşturabilir, harita ve takvim üzerinden etkinlikleri görüntüleyebilir, kullanıcı hesabı ile giriş/çıkış yapabilir.
 
