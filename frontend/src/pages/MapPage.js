@@ -22,7 +22,7 @@ const MapPage = () => {
   return (
     <div className="h-screen p-4">
       <h2 className="text-xl font-bold mb-2">Etkinlik Haritası</h2>
-      <MapContainer center={[38.4, 27.1]} zoom={7} style={{ height: '80%', width: '100%' }}>
+      <MapContainer center={[39.8, 32.8]} zoom={7} style={{ height: '80%', width: '100%' }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; OpenStreetMap contributors'
