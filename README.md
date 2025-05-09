@@ -19,12 +19,9 @@ Web tabanlı bu uygulama ile kullanıcılar etkinlik oluşturabilir, harita ve t
 
 ## 🛠 Kurulum
 
-### 1. Gerekli Kurulumlar
+### Gerekli Kurulumlar
 
 - [Node.js](https://nodejs.org/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - PostgreSQL (host bilgisayarda çalışmalı)
-
-### 2. `.env` Dosyalarını Oluştur
-
-#### 📁 `backend/.env`
+- backend/.env dosyasını ayarla
