@@ -5,7 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import 'leaflet/dist/leaflet.css';
+const baseURL = process.env.REACT_APP_API_URL;
 
 const CalendarPage = () => {
   const [events, setEvents] = useState([]);
@@ -14,11 +14,11 @@ const CalendarPage = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/events');
+        const res = await axios.get(`${baseURL}/api/events`);
         const calendarEvents = res.data.map((event) => ({
           ...event,
           title: event.title,
-          date: event.date,
+          date: event.date
         }));
         setEvents(calendarEvents);
       } catch (err) {
@@ -30,8 +30,8 @@ const CalendarPage = () => {
   }, []);
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Etkinlik Takvimi</h2>
+    <div className="p-6">
+      <h2 className="text-xl font-semibold mb-4">Etkinlik Takvimi</h2>
 
       <FullCalendar
         plugins={[dayGridPlugin]}
@@ -48,25 +48,14 @@ const CalendarPage = () => {
         }}
       />
 
-      {selectedEvent && (
-        <div style={{
-          position: 'fixed',
-          top: '15%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: 'white',
-          border: '1px solid #ccc',
-          borderRadius: '10px',
-          padding: '20px',
-          width: '400px',
-          zIndex: 1000
-        }}>
-          <h3>{selectedEvent.title}</h3>
+      {selectedEvent && selectedEvent.latitude && selectedEvent.longitude && (
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-white border border-gray-300 rounded-lg shadow-md p-4 w-96 z-50">
+          <h3 className="text-lg font-bold mb-2">{selectedEvent.title}</h3>
           <p><strong>Açıklama:</strong> {selectedEvent.description}</p>
           <p><strong>Tarih:</strong> {new Date(selectedEvent.date).toLocaleString()}</p>
           <p><strong>Konum:</strong> ({selectedEvent.latitude}, {selectedEvent.longitude})</p>
 
-          <div style={{ height: '200px', marginTop: '10px' }}>
+          <div className="h-48 mt-3">
             <MapContainer
               center={[selectedEvent.latitude, selectedEvent.longitude]}
               zoom={13}
@@ -83,7 +72,7 @@ const CalendarPage = () => {
           </div>
 
           <button
-            style={{ marginTop: '10px' }}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
             onClick={() => setSelectedEvent(null)}
           >
             Kapat

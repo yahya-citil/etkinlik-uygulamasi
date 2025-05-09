@@ -1,6 +1,6 @@
-const verifyToken = require('../middleware/authMiddleware');
 const express = require('express');
 const router = express.Router();
+const verifyToken = require('../middleware/authMiddleware');
 const {
   getAllEvents,
   createEvent,
@@ -9,10 +9,13 @@ const {
   deleteEvent
 } = require('../controllers/auth/eventsController');
 
+// 🌐 Herkes görebilir
 router.get('/', getAllEvents);
-router.post('/', createEvent);
 router.get('/:id', getEventById);
-router.put('/:id', updateEvent);
-router.delete('/:id', deleteEvent);
+
+// 🔐 Giriş yapmış kullanıcılar işlem yapabilir
+router.post('/', verifyToken, createEvent);
+router.put('/:id', verifyToken, updateEvent);
+router.delete('/:id', verifyToken, deleteEvent);
 
 module.exports = router;

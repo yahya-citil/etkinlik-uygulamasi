@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS events (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    lat DECIMAL(9,6),
+    lng DECIMAL(9,6),
+    date TIMESTAMP NOT NULL,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
